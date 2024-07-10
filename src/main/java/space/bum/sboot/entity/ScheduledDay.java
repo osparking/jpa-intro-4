@@ -39,6 +39,10 @@ import lombok.NoArgsConstructor;
     name="Employees",
     query="SELECT id as employeeNumber, name FROM EMPLOYEE",
     resultSetMapping = "EmployeeResult")
+@SqlResultSetMapping(name = "EmployeeScheduleResults", entities = {
+    @EntityResult(entityClass = space.bum.sboot.entity.Employee.class),
+    @EntityResult(entityClass = space.bum.sboot.entity.ScheduledDay.class) })
+
 @NoArgsConstructor
 @Data
 public class ScheduledDay {
