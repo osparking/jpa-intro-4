@@ -12,6 +12,9 @@ import jakarta.persistence.Table;
 @Table(name = "SCHEDULE_DAYS")
 @SqlResultSetMapping(name = "FridayEmployeeResult", columns = {
     @ColumnResult(name = "employeeId") })
+@NamedNativeQuery(name = "FridayEmployees", 
+  query = "SELECT employeeId FROM schedule_days WHERE dayOfWeek = 'FRIDAY'", 
+  resultSetMapping = "FridayEmployeeResult")
 public class ScheduledDay {
 
   @Id
