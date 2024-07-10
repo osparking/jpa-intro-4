@@ -35,6 +35,10 @@ import lombok.NoArgsConstructor;
         fields = {
             @FieldResult(name = "id", column = "employeeNumber"),
             @FieldResult(name = "name", column = "name") }) })
+@NamedNativeQuery(
+    name="Employees",
+    query="SELECT id as employeeNumber, name FROM EMPLOYEE",
+    resultSetMapping = "EmployeeResult")
 @NoArgsConstructor
 @Data
 public class ScheduledDay {
