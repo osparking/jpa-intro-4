@@ -35,4 +35,13 @@ class ScheduledDayTest {
         .allMatch(c -> c.getEmployeeId().longValue() == 100L));
   }
 
+  @Test
+  public void whenNamedQuery_thenSingleEntityResult() {
+    @SuppressWarnings("unchecked")
+    List<Employee> employees = Collections.checkedList(
+        em.createNamedQuery("Employees").getResultList(), Employee.class);
+    assertEquals(1, employees.size());
+    assertTrue(
+        employees.stream().allMatch(c -> c.getClass() == Employee.class));
+  }
 }
