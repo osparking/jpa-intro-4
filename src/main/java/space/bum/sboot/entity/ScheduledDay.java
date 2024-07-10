@@ -7,6 +7,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.NamedNativeQuery;
 import jakarta.persistence.SqlResultSetMapping;
 import jakarta.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "SCHEDULE_DAYS")
@@ -15,6 +17,8 @@ import jakarta.persistence.Table;
 @NamedNativeQuery(name = "FridayEmployees", 
   query = "SELECT employeeId FROM schedule_days WHERE dayOfWeek = 'FRIDAY'", 
   resultSetMapping = "FridayEmployeeResult")
+@NoArgsConstructor
+@Data
 public class ScheduledDay {
 
   @Id
