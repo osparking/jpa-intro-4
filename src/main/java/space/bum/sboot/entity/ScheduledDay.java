@@ -13,9 +13,9 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "SCHEDULE_DAYS")
 @SqlResultSetMapping(name = "FridayEmployeeResult", columns = {
-    @ColumnResult(name = "employeeId") })
+    @ColumnResult(name = "employee_Id") })
 @NamedNativeQuery(name = "FridayEmployees", 
-  query = "SELECT employeeId FROM schedule_days WHERE dayOfWeek = 'FRIDAY'", 
+  query = "SELECT employee_Id FROM schedule_days WHERE day_Of_Week = 'FRIDAY'", 
   resultSetMapping = "FridayEmployeeResult")
 @NoArgsConstructor
 @Data
