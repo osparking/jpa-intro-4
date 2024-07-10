@@ -1,6 +1,7 @@
 package space.bum.sboot.entity;
 
 import jakarta.persistence.ColumnResult;
+import jakarta.persistence.ConstructorResult;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -14,6 +15,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "SCHEDULE_DAYS")
 @SqlResultSetMapping(name = "FridayEmployeeResult", columns = {
     @ColumnResult(name = "employee_Id") })
+
 @NamedNativeQuery(name = "FridayEmployees", 
   query = "SELECT employee_Id FROM schedule_days WHERE day_Of_Week = 'FRIDAY'", 
   resultSetMapping = "FridayEmployeeResult")
@@ -26,4 +28,11 @@ public class ScheduledDay {
   private Long id;
   private Long employeeId;
   private String dayOfWeek;
+  
+  public ScheduledDay(Long id, Long employeeId,
+      Integer hourIn, Integer hourOut, String dayofWeek) {
+    this.id = id;
+    this.employeeId = employeeId;
+    this.dayOfWeek = dayofWeek;
+  }  
 }
