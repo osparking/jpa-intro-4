@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
           @ColumnResult(name = "employee_Id", type = Long.class),
           @ColumnResult(name = "day_Of_Week") }) })
 @NamedNativeQuery(name = "Schedules",
-  query = "SELECT * FROM schedule_days WHERE employee_Id = 1",
+  query = "SELECT * FROM schedule_days WHERE employee_Id = 100",
   resultSetMapping = "ScheduleResult")
 @NoArgsConstructor
 @Data
@@ -38,8 +38,7 @@ public class ScheduledDay {
   private Long employeeId;
   private String dayOfWeek;
   
-  public ScheduledDay(Long id, Long employeeId,
-      Integer hourIn, Integer hourOut, String dayofWeek) {
+  public ScheduledDay(Long id, Long employeeId, String dayofWeek) {
     this.id = id;
     this.employeeId = employeeId;
     this.dayOfWeek = dayofWeek;

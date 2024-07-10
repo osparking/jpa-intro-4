@@ -30,7 +30,7 @@ class ScheduledDayTest {
     List<ScheduledDay> scheduleDays = Collections.checkedList(
         em.createNamedQuery("Schedules", ScheduledDay.class).getResultList(),
         ScheduledDay.class);
-    assertEquals(3, scheduleDays.size());
+    assertEquals(1, scheduleDays.size());
     assertTrue(scheduleDays.stream()
         .allMatch(c -> c.getEmployeeId().longValue() == 100L));
   }
