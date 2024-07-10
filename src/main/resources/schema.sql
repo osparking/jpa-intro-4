@@ -1,0 +1,8 @@
+CREATE TABLE EMPLOYEE
+(id BIGINT,   
+name VARCHAR(10));
+
+CREATE TABLE SCHEDULE_DAYS    
+(id IDENTITY,   
+employeeId BIGINT,    
+dayOfWeek VARCHAR(10));
