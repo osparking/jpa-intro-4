@@ -25,6 +25,9 @@ import lombok.NoArgsConstructor;
           @ColumnResult(name = "id", type = Long.class),
           @ColumnResult(name = "employee_Id", type = Long.class),
           @ColumnResult(name = "day_Of_Week") }) })
+@NamedNativeQuery(name = "Schedules",
+  query = "SELECT * FROM schedule_days WHERE employee_Id = 1",
+  resultSetMapping = "ScheduleResult")
 @NoArgsConstructor
 @Data
 public class ScheduledDay {
