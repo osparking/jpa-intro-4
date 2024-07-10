@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 
 @SpringBootTest
 class ScheduledDayTest {
@@ -44,4 +45,24 @@ class ScheduledDayTest {
     assertTrue(
         employees.stream().allMatch(c -> c.getClass() == Employee.class));
   }
+  
+  @Test
+  public void whenNamedQuery_thenMultipleEntityResult() {
+    StringBuffer sqlSB = new StringBuffer("SELECT e.id as idEmployee, ");
+    sqlSB.append(" e.name, d.id as daysId, d.employee_Id, d.day_Of_Week");
+    sqlSB.append(" FROM employee e, schedule_days d");
+    sqlSB.append(" WHERE e.id = d.employee_Id");
+    Query query = em.createNativeQuery(sqlSB.toString(),
+        "EmployeeScheduleResults");
+
+    @SuppressWarnings("unchecked")
+    List<Object[]> results = query.getResultList();
+    assertEquals(1, results.size());
+    assertTrue(results.get(0).length == 2);
+
+    Employee emp = (Employee) results.get(0)[0];
+    ScheduledDay day = (ScheduledDay) results.get(0)[1];
+
+    assertTrue(day.getEmployeeId() == emp.getId());
+  }  
 }
