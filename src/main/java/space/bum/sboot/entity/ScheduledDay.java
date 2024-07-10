@@ -19,6 +19,12 @@ import lombok.NoArgsConstructor;
 @NamedNativeQuery(name = "FridayEmployees", 
   query = "SELECT employee_Id FROM schedule_days WHERE day_Of_Week = 'FRIDAY'", 
   resultSetMapping = "FridayEmployeeResult")
+@SqlResultSetMapping(name = "ScheduleResult", classes = {
+    @ConstructorResult(targetClass = space.bum.sboot.entity.ScheduledDay.class, 
+        columns = {
+          @ColumnResult(name = "id", type = Long.class),
+          @ColumnResult(name = "employee_Id", type = Long.class),
+          @ColumnResult(name = "day_Of_Week") }) })
 @NoArgsConstructor
 @Data
 public class ScheduledDay {
