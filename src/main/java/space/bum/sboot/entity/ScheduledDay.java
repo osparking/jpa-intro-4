@@ -3,6 +3,8 @@ package space.bum.sboot.entity;
 import jakarta.persistence.ColumnResult;
 import jakarta.persistence.ConstructorResult;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityResult;
+import jakarta.persistence.FieldResult;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedNativeQuery;
@@ -28,6 +30,11 @@ import lombok.NoArgsConstructor;
 @NamedNativeQuery(name = "Schedules",
   query = "SELECT * FROM schedule_days WHERE employee_Id = 100",
   resultSetMapping = "ScheduleResult")
+@SqlResultSetMapping(name = "EmployeeResult", entities = {
+    @EntityResult(entityClass = space.bum.sboot.entity.Employee.class, 
+        fields = {
+            @FieldResult(name = "id", column = "employeeNumber"),
+            @FieldResult(name = "name", column = "name") }) })
 @NoArgsConstructor
 @Data
 public class ScheduledDay {
