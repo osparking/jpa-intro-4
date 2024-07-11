@@ -3,7 +3,7 @@ package space.bum.sboot.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.annotations.WhereJoinTable;
+import org.hibernate.annotations.SQLJoinTableRestriction;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,8 +36,7 @@ public class User {
     this.name = name;
   }
   
-  @SuppressWarnings("deprecation")
-  @WhereJoinTable(clause = "role='MODERATOR'")
+  @SQLJoinTableRestriction("role = 'MODERATOR'") 
   @ManyToMany
   @JoinTable(
     name = "r_user_group",
