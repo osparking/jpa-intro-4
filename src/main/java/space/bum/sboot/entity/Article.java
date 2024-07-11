@@ -7,10 +7,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "articles")
+@Table(name = Article.TABLE_NAME)
 @NoArgsConstructor
 @Data
 public class Article {
+  private static final String TABLE_NAME = "ARTICLES";
   @Id
   private Long articleId;
 }
