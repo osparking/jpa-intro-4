@@ -1,8 +1,13 @@
 package space.bum.sboot.entity;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -15,7 +20,7 @@ class UserGroupRelationTest {
   private EntityManagerFactory emf;
   private SessionFactory sf;
   private Session session;
-
+  
   @BeforeEach
   void setUp() throws Exception {
     sf = emf.unwrap(SessionFactory.class);
@@ -52,5 +57,12 @@ class UserGroupRelationTest {
     session.flush();
     session.refresh(user);
     session.refresh(group);
+  }
+  
+  @Test
+  public void whenFetchGroupsInWhichUser1Is_thenResultLengthIs2_thenOk() {
+    User user1 = session.find(User.class, 1L);
+    List<MyGroup> groups = user1.getGroups();
+    assertEquals(2, groups.size());
   }
 }
