@@ -65,4 +65,11 @@ class UserGroupRelationTest {
     List<MyGroup> groups = user1.getGroups();
     assertEquals(2, groups.size());
   }
+  
+  @Test
+  public void whenFetchUser1ModeratorGroups_thenResultIs_1_thenOk() {
+    User user1 = session.find(User.class, 1L);
+    List<MyGroup> groups = user1.getModeratorGroups();
+    assertEquals(1, groups.size());
+  }
 }
