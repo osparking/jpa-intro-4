@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-public class Group {
+public class MyGroup {
 
   @Id
   @GeneratedValue
@@ -23,7 +23,7 @@ public class Group {
   @ManyToMany(mappedBy = "groups")
   private List<User> users = new ArrayList<>();
   
-  public Group(String name) {
+  public MyGroup(String name) {
     this.name = name;
   }
 }

@@ -26,8 +26,8 @@ class UserGroupRelationTest {
     User user2 = new User("user2");
     User user3 = new User("user3");
 
-    Group group1 = new Group("group1");
-    Group group2 = new Group("group2");
+    MyGroup group1 = new MyGroup("group1");
+    MyGroup group2 = new MyGroup("group2");
 
     session.persist(group1);
     session.persist(group2);
@@ -44,7 +44,7 @@ class UserGroupRelationTest {
     saveRelation(user2, group2, UserGroupRole.MODERATOR);
   }
 
-  private void saveRelation(User user, Group group, UserGroupRole role) {
+  private void saveRelation(User user, MyGroup group, UserGroupRole role) {
     UserGroupRelation relation = new UserGroupRelation(user.getId(),
         group.getId(), role);
 
