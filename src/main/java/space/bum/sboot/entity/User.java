@@ -3,6 +3,8 @@ package space.bum.sboot.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.annotations.WhereJoinTable;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -33,4 +35,15 @@ public class User {
     super();
     this.name = name;
   }
+  
+  @SuppressWarnings("deprecation")
+  @WhereJoinTable(clause = "role='MODERATOR'")
+  @ManyToMany
+  @JoinTable(
+    name = "r_user_group",
+    joinColumns = @JoinColumn(name = "user_id"),
+    inverseJoinColumns = @JoinColumn(name = "group_id")
+  )
+  private List<MyGroup> moderatorGroups = new ArrayList<>();
+  //@formatter:on
 }
