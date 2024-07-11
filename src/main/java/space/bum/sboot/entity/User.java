@@ -28,4 +28,9 @@ public class User {
     joinColumns = @JoinColumn(name = "user_id"), 
     inverseJoinColumns = @JoinColumn(name = "group_id"))
   private List<Group> groups = new ArrayList<>();
+
+  public User(String name) {
+    super();
+    this.name = name;
+  }
 }

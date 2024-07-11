@@ -14,6 +14,12 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity(name = "r_user_group")
 public class UserGroupRelation implements Serializable {
+  public UserGroupRelation(Long userId, Long groupId, UserGroupRole role) {
+    this.userId = userId;
+    this.groupId = groupId;
+    this.role = role;
+  }
+
   private static final long serialVersionUID = 1L;
 
   @Id
