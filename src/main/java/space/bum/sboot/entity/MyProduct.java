@@ -9,7 +9,7 @@ import jakarta.persistence.InheritanceType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity(name="products")
+@Entity(name = "products")
 @DiscriminatorFormula("case when author is not null then 1 else 2 end")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @NoArgsConstructor
@@ -18,4 +18,9 @@ public class MyProduct {
   @Id
   private long productId;
   private String name;
+
+  public MyProduct(int productId, String name) {
+    this.productId = productId;
+    this.name = name;
+  }
 }
