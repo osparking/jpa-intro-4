@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.hibernate.Session;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import jakarta.persistence.EntityManager;
@@ -36,4 +37,14 @@ class MyProductTest {
     assertEquals(2, result.size());
   }
 
+  @Test
+  @Transactional
+  public void givenSubclasses_whenQueryMappedSuperclass_thenOk() {
+      MyEmployee emp = new MyEmployee(1, "제이비", "범이비누");
+      session.persist(emp);
+      TypedQuery<Person> query = em.createQuery(
+          "from space.bum.sboot.entity.Person", Person.class);
+      var result = query.getResultList();
+      assertEquals(1, result.size());
+  }
 }
