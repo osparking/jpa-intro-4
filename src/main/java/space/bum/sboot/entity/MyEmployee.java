@@ -12,5 +12,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MyEmployee extends Person {
-    private String company;
+  public MyEmployee(int personId, String name, String company) {
+    super(personId, name);
+    this.company = company;
+  }
+
+  private String company;
 }
