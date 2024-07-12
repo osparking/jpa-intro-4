@@ -1,7 +1,7 @@
 package space.bum.sboot.entity;
 
-import jakarta.persistence.DiscriminatorColumn;
-import jakarta.persistence.DiscriminatorType;
+import org.hibernate.annotations.DiscriminatorFormula;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
@@ -10,8 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity(name="products")
-@DiscriminatorColumn(name = "product_type", 
-  discriminatorType = DiscriminatorType.INTEGER)
+@DiscriminatorFormula("case when author is not null then 1 else 2 end")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @NoArgsConstructor
 @Data
